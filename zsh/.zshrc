@@ -31,12 +31,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt EXTENDED_GLOB
 
 # Better prompt
-parse_git_branch() {
-  git rev-parse --abbrev-ref HEAD 2>/dev/null
-}
-
-export PS1="%K{250}%F{cyan}%n@%m %F{yellow}%~ %F{green}$(parse_git_branch)%f %k%# %f"
-
+export PS1="%K{250}%F{cyan}%n@%m %F{yellow}%~%k%f%# "
 
 # compinit for smarter autocomplete
 autoload -Uz compinit
