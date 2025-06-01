@@ -1,0 +1,58 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/erikbejstam/.zshrc'
+
+autoload -Uz compinit
+compinit
+
+# End of lines added by compinstall
+
+# Enable command auto-correction (fix typos automatically)
+setopt CORRECT
+
+# Share command history between all running shells immediately
+setopt SHARE_HISTORY
+
+# Append to history file, don't overwrite it
+setopt APPEND_HISTORY
+
+# Ignore duplicate commands in history
+setopt HIST_IGNORE_DUPS
+
+# Case-insensitive completion (helpful when tab completing)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Enable extended globbing (more powerful pattern matching)
+setopt EXTENDED_GLOB
+
+# Better prompt
+parse_git_branch() {
+  git rev-parse --abbrev-ref HEAD 2>/dev/null
+}
+
+export PS1="%K{250}%F{cyan}%n@%m %F{yellow}%~ %F{green}$(parse_git_branch)%f %k%# %f"
+
+
+# compinit for smarter autocomplete
+autoload -Uz compinit
+compinit
+
+# Aliases
+alias ll="ls -lah"
+alias gs='git status'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+gac() {
+	git add .
+	git commit -m "$*" 
+}
+
+# Syntax highlighting
+source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
