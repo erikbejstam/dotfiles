@@ -1,0 +1,13 @@
+[Unit]
+Description=Run xremap daemon to remap keys
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/xremap /home/erikbejstam/.config/xremap/config.yml
+Restart=on-failure
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=home/erikbejstam/.Xauthority
+
+[Install]
+WantedBy=default.target
+
